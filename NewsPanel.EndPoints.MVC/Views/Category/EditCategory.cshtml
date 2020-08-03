@@ -1,0 +1,49 @@
+﻿@model NewsPanel.Domain.Core.CategoryEntities.Category
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class=".container ">
+    @if (Model != null)
+    {
+        <div class="d-flex justify-content-center ">
+            <form method="post" asp-controller="Category" asp-action="EditCategory" >
+                <div class="form-group ">
+                    <label>Selected Category: "<b>@Model.Title</b>"</label>
+                    <input type="text" asp-for="@Model.Title" value="@Model.Title" class="form-control" autofocus required maxlength="30"  />
+                    <span asp-validation-for="@Model.Title" class="text-danger" ></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="All"></div>
+                </div>
+                <div class="form-group d-flex justify-content-end">
+                    <div>
+                        <a class="btn btn-secondary float-right" style="padding:8px;margin-top:9px;" asp-controller="Category" asp-action="List">
+                            <span class="font-weight-bold text-lg">Back</span>
+                        </a>
+                    </div>
+                    <div>
+                        <input type="submit" class="text-lg font-weight-bold  btn btn-info m-2 p-2 float-right" value="submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="row ">
+            <div>
+                <span class="text-danger">Category Not Found!</span>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-2">
+                <a class="btn btn-secondary float-right" style="padding:8px;margin-top:9px;" asp-controller="Category" asp-action="List">
+                    <span class="text-lg p-2 font-weight-bold m-2 text-gray-100">Back</span>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+

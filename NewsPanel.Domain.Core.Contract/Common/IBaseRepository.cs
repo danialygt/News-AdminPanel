@@ -9,10 +9,11 @@ namespace NewsPanel.Domain.Core.Contract.Common
     {
         TEntity Add(TEntity entity);
         void Delete(int id);
-        void Update(TEntity entity);
-        void Update(int id);
+        void Delete(TEntity entity);
         TEntity Get(int id);
         IQueryable<TEntity> GetAll();
-
+        void Save();
     }
 }
+
+

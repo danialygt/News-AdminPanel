@@ -1,4 +1,5 @@
-﻿using NewsPanel.Domain.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using NewsPanel.Domain.Core;
 using NewsPanel.Domain.Core.Contract.Common;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,16 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
             {
                 Id = id
             };
+            _newsContext.Remove(id);
+            _newsContext.SaveChanges();
+        }
+
+        public void Delete(TEntity entity)
+        {
             _newsContext.Remove(entity);
             _newsContext.SaveChanges();
         }
+
 
         public TEntity Get(int id)
         {
@@ -44,17 +52,9 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
         {
             return _newsContext.Set<TEntity>().AsQueryable();
         }
-
-        public void Update(TEntity entity)
+        public void Save()
         {
-            _newsContext.Set<TEntity>().Update(entity);
             _newsContext.SaveChanges();
-        }
-
-        public void Update(int id)
-        {
-            var entity = Get(id);
-            Update(entity);
         }
     }
 }
