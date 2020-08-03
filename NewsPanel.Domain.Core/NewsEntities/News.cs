@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NewsPanel.Domain.Core.CategoryEntities;
+using NewsPanel.Domain.Core.KeywordEntities;
+using NewsPanel.Domain.Core.PlaceEntities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
