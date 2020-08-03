@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NewsPanel.Domain.Core.Contract\NewsPanel.Domain.Core.Contract.csproj" />
+    <ProjectReference Include="..\NewsPanel.Domain.Core\NewsPanel.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

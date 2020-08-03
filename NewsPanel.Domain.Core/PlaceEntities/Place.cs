@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsPanel.Domain.Core.PlaceEntities
 {
-    public class Places:BaseEntity
+    public class Place:BaseEntity
     {
         public string Name { get; set; }
 

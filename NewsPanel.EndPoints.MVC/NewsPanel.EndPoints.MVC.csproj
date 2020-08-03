@@ -8,6 +8,12 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NewsPanel.Domain.Core.Contract\NewsPanel.Domain.Core.Contract.csproj" />
+    <ProjectReference Include="..\NewsPanel.Domain.Core\NewsPanel.Domain.Core.csproj" />
+    <ProjectReference Include="..\NewsPanel.Infrastructure.DataAccess\NewsPanel.Infrastructure.DataAccess.csproj" />
+  </ItemGroup>
+
 
 
 </Project>
