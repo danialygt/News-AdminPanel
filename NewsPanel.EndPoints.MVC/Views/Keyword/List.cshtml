@@ -1,5 +1,57 @@
-﻿
+﻿@model List<NewsPanel.Domain.Core.KeywordEntities.Keyword>
 @{
     ViewData["Title"] = "Keyword List";
 
 }
+
+
+<div class=".container ">
+    @if (Model != null)
+    {
+        <div class="d-flex flex-column align-items-center">
+
+            <span class="d-block">Keywords:</span>
+            <br />
+            <table class="table table-bordered table-dark table-striped " style="width:50%">
+                <tr>
+                    <th>Keyword</th>
+                    <th>Actions</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>
+                            <a class="btn btn-info" asp-controller="Keyword" asp-action="EditKeyword" asp-route-id="@item.Id">
+                                <span class="text-lg font-weight-bold">Edit</span>
+                            </a>
+
+                            |
+
+                            <a class="btn btn-info" asp-controller="Keyword" asp-action="DeleteKeyword" asp-route-id="@item.Id">
+                                <span class="text-lg font-weight-bold">Delete</span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="row ">
+            <div>
+                <span class="text-danger">There is no Keyword! Add one</span>
+            </div>
+        </div>
+    }
+
+    <div class="row justify-content-end">
+        <div class="col-3">
+            <a class="btn btn-info btn-icon-split" asp-controller="Keyword" asp-action="AddKeyword">
+                <span class="text-lg p-2 font-weight-bold m-2 text-gray-100">Add Keyword</span>
+            </a>
+        </div>
+    </div>
+</div>
