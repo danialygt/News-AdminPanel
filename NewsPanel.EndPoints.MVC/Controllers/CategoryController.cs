@@ -28,7 +28,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult EditCategory(int  id)
         {
-            var category = _categoryRepository.Get(new Category() { Id = id});
+            var category = _categoryRepository.Get(id);
             return View(category);
         }
 
@@ -57,7 +57,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult DeleteCategory(int id)
         {
-            var category = _categoryRepository.Get(new Category() { Id = id});
+            var category = _categoryRepository.Get(id);
             return View(category);
         }
 

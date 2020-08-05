@@ -28,7 +28,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult EditKeyword(int id)
         {
-            var keyword = _keywordRepository.Get(new Keyword() {Id = id });
+            var keyword = _keywordRepository.Get(id);
             return View(keyword);
         }
 
@@ -57,7 +57,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult DeleteKeyword(int id)
         {
-            var keyword = _keywordRepository.Get(new Keyword() { Id = id});
+            var keyword = _keywordRepository.Get(id);
             return View(keyword);
         }
 

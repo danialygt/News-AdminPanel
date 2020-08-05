@@ -1,6 +1,6 @@
-﻿@model List<NewsPanel.Domain.Core.KeywordEntities.Keyword>
+﻿@model List<NewsPanel.Domain.Core.PlaceEntities.Place>
 @{
-    ViewData["Title"] = "Keyword List";
+    ViewData["Title"] = "Place List";
 
 }
 
@@ -10,26 +10,26 @@
     {
         <div class="d-flex flex-column align-items-center">
 
-            <span class="d-block display-4 font-weight-bold pb-3">Keywords</span>
+            <span class="d-block display-4 font-weight-bold pb-3">Places</span>
             <br />
             <table class="table table-bordered table-dark table-striped " style="width:50%">
                 <tr>
-                    <th>Keyword</th>
+                    <th>Place</th>
                     <th>Actions</th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Title</td>
+                        <td>@item.Name</td>
                         <td>
-                            <a class="btn btn-info" asp-controller="Keyword" asp-action="EditKeyword" asp-route-id="@item.Id">
+                            <a class="btn btn-info" asp-controller="Place" asp-action="EditPlace" asp-route-id="@item.Id">
                                 <span class="text-lg font-weight-bold">Edit</span>
                             </a>
 
                             |
 
-                            <a class="btn btn-info" asp-controller="Keyword" asp-action="DeleteKeyword" asp-route-id="@item.Id">
+                            <a class="btn btn-info" asp-controller="Place" asp-action="DeletePlace" asp-route-id="@item.Id">
                                 <span class="text-lg font-weight-bold">Delete</span>
                             </a>
                         </td>
@@ -42,15 +42,15 @@
     {
         <div class="row ">
             <div>
-                <span class="text-danger">There is no Keyword! Add one</span>
+                <span class="text-danger">There is no Place! Add one</span>
             </div>
         </div>
     }
 
     <div class="row justify-content-end">
         <div class="col-3">
-            <a class="btn btn-info btn-icon-split" asp-controller="Keyword" asp-action="AddKeyword">
-                <span class="text-lg p-2 font-weight-bold m-2 text-gray-100">Add Keyword</span>
+            <a class="btn btn-info btn-icon-split" asp-controller="Place" asp-action="AddPlace">
+                <span class="text-lg p-2 font-weight-bold m-2 text-gray-100">Add Place</span>
             </a>
         </div>
     </div>
