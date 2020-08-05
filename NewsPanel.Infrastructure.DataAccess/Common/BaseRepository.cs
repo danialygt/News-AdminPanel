@@ -48,6 +48,11 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
             return _newsContext.Set<TEntity>().Find(id);
         }
 
+        public TEntity Get(TEntity entity)
+        {
+            return _newsContext.Set<TEntity>().Find(entity.Id);
+        }
+
         public IQueryable<TEntity> GetAll()
         {
             return _newsContext.Set<TEntity>().AsQueryable();

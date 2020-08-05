@@ -69,7 +69,7 @@ namespace NewsPanel.Infrastructure.DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NewsId = table.Column<int>(nullable: false),
-                    CatrgotyId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

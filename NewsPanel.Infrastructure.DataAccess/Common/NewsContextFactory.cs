@@ -11,7 +11,7 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
         public NewsContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<NewsContext>();
-            builder.UseSqlServer("Server=.;Database=NewsDb;Integrated Security=True;MultipleActiveResultSets=true");
+            builder.UseSqlServer("Server=.;Database=NewsDatabase;Integrated Security=True;MultipleActiveResultSets=true");
             return new NewsContext(builder.Options);
         }
     }

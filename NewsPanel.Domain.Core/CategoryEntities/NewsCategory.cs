@@ -7,6 +7,6 @@ namespace NewsPanel.Domain.Core.CategoryEntities
     public class NewsCategory:BaseEntity
     {
         public int NewsId { get; set; }
-        public int CatrgotyId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

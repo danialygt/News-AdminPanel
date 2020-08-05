@@ -28,7 +28,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult EditKeyword(int id)
         {
-            var keyword = _keywordRepository.Get(id);
+            var keyword = _keywordRepository.Get(new Keyword() {Id = id });
             return View(keyword);
         }
 
@@ -36,7 +36,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
         [HttpPost]
         public IActionResult EditKeyword(Keyword keyword)
         {
-            var entity = _keywordRepository.Get(keyword.Id);
+            var entity = _keywordRepository.Get(keyword);
             if (entity != null)
             {
                 entity.Title = keyword.Title;
@@ -57,7 +57,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult DeleteKeyword(int id)
         {
-            var keyword = _keywordRepository.Get(id);
+            var keyword = _keywordRepository.Get(new Keyword() { Id = id});
             return View(keyword);
         }
 
@@ -65,7 +65,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
         [HttpPost]
         public IActionResult DeleteKeyword(int id, Keyword keyword)
         {
-            var entity = _keywordRepository.Get(keyword.Id);
+            var entity = _keywordRepository.Get(keyword);
             if (entity != null)
             {
                 _keywordRepository.Delete(entity);

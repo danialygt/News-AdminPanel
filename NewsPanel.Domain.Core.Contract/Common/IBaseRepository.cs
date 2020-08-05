@@ -11,6 +11,7 @@ namespace NewsPanel.Domain.Core.Contract.Common
         void Delete(int id);
         void Delete(TEntity entity);
         TEntity Get(int id);
+        TEntity Get(TEntity entity);
         IQueryable<TEntity> GetAll();
         void Save();
     }

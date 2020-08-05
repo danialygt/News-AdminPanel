@@ -28,7 +28,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult EditCategory(int  id)
         {
-            var category = _categoryRepository.Get(id);
+            var category = _categoryRepository.Get(new Category() { Id = id});
             return View(category);
         }
 
@@ -36,7 +36,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
         [HttpPost]
         public IActionResult EditCategory(Category category)
         {
-            var entity = _categoryRepository.Get(category.Id);
+            var entity = _categoryRepository.Get(category);
             if (entity != null)
             {
                 entity.Title = category.Title;
@@ -45,7 +45,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
             }
             else
             {
-                ModelState.AddModelError("CategotyNotExist", "This Category Not Found!");
+                ModelState.AddModelError("CategoryNotExist", "This Category Not Found!");
                 return View(category);
             }
         }
@@ -57,7 +57,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
         public IActionResult DeleteCategory(int id)
         {
-            var category = _categoryRepository.Get(id);
+            var category = _categoryRepository.Get(new Category() { Id = id});
             return View(category);
         }
 
@@ -65,7 +65,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
         [HttpPost]
         public IActionResult DeleteCategory(int id, Category category)
         {
-            var entity = _categoryRepository.Get(category.Id);
+            var entity = _categoryRepository.Get(category);
             if (entity != null)
             {
                 _categoryRepository.Delete(entity);
@@ -73,7 +73,7 @@ namespace NewsPanel.EndPoints.MVC.Controllers
             }
             else
             {
-                ModelState.AddModelError("CategotyNotExist", "This Category Not Found!");
+                ModelState.AddModelError("CategoryNotExist", "This Category Not Found!");
                 return View(category);
             }
         }

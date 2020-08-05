@@ -10,7 +10,7 @@ using NewsPanel.Infrastructure.DataAccess.Common;
 namespace NewsPanel.Infrastructure.DataAccess.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    [Migration("20200803135345_initial")]
+    [Migration("20200804203105_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace NewsPanel.Infrastructure.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CatrgotyId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("NewsId")

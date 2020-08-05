@@ -19,12 +19,14 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
 
 
         public DbSet<News> News { get; set; }
-        public DbSet<Category> Categories  { get; set; }
-        public DbSet<NewsCategory> NewsCategories { get; set; }
+
         public DbSet<Place> Places { get; set; }
-        public DbSet<NewsPublishPlace> newsPublishPlaces { get; set; }
         public DbSet<Keyword> keywords { get; set; }
+        public DbSet<Category> Categories  { get; set; }
+        
         public DbSet<NewsKeyword> newsKeywords { get; set; }
+        public DbSet<NewsCategory> NewsCategories { get; set; }
+        public DbSet<NewsPublishPlace> newsPublishPlaces { get; set; }
 
 
 
@@ -36,13 +38,17 @@ namespace NewsPanel.Infrastructure.DataAccess.Common
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new NewsCategoryConfig());
-            modelBuilder.ApplyConfiguration(new KeywordConfig());
-            modelBuilder.ApplyConfiguration(new NewsKeywordConfig());
             modelBuilder.ApplyConfiguration(new NewsConfig());
+            
             modelBuilder.ApplyConfiguration(new PlaceConfig());
+            modelBuilder.ApplyConfiguration(new KeywordConfig());
+            modelBuilder.ApplyConfiguration(new CategoryConfig());
+            
+            modelBuilder.ApplyConfiguration(new NewsKeywordConfig());
+            modelBuilder.ApplyConfiguration(new NewsCategoryConfig());
             modelBuilder.ApplyConfiguration(new NewsPublishPlaceConfig());
+
+
 
             base.OnModelCreating(modelBuilder);
         }

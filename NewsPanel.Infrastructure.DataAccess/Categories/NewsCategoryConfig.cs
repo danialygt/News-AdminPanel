@@ -13,7 +13,7 @@ namespace NewsPanel.Infrastructure.DataAccess.Categories
         public void Configure(EntityTypeBuilder<NewsCategory> builder)
         {
             builder.Property(c => c.NewsId).IsRequired();
-            builder.Property(c => c.CatrgotyId).IsRequired();
+            builder.Property(c => c.CategoryId).IsRequired();
         }
     }
 }

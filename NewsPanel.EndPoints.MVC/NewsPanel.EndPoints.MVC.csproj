@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Models\Categories\" />
     <Folder Include="Models\Keyword\" />
-    <Folder Include="Models\Newss\" />
   </ItemGroup>
 
   <ItemGroup>

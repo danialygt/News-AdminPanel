@@ -1,6 +1,81 @@
-﻿
-
+﻿@model List<NewsPanel.EndPoints.MVC.Models.Newss.NewsModel>
 @{
     ViewData["Title"] = "News List";
-
 }
+
+
+<div class=".container ">
+    @if (Model != null)
+    {
+        <div class="d-flex flex-column align-items-center">
+
+            <span class="d-block">News:</span>
+            <br />
+            <table class="table table-bordered table-dark table-striped " style="width:100%">
+                <tr  >
+                    <td class="col-2">Titles</td>
+                    <td class="col-4" >Contents</td>
+                    <td class="col-1" >Publish Date</td>
+                    <td class="col-1" >Categories</td>
+                    <td class="col-1" >Keywords</td>
+                    <td class="col-1" >Publish Place</td>
+                    <th class="col-2" >Actions</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="col-2" >@item.Title</td>
+                    <td class="col-4" >@item.Content</td>
+                    <td class="col-1" >@item.PublishDate</td>
+                    <td class="col-1" >
+                        @foreach (var categoryItem in @item.CategoryForDisplay)
+                        {
+                        <span>@categoryItem.Title, </span>
+                        }
+                    </td>
+                    <td class="col-1">
+                        @foreach (var keywordItem in @item.KeywordForDisplay)
+                        {
+                            <span>@keywordItem.Title, </span>
+                        }
+                    </td>
+                    <td class="col-1">
+                        @foreach (var placeItem in @item.PlaceForDisplay)
+                        {
+                            <span>@placeItem.Name, </span>
+                        }
+                    </td>
+                    <td class="col-2" >
+                        <a class="btn btn-info" asp-controller="News" asp-action="EditNews" asp-route-id="@item.Id">
+                            <span class="text-lg font-weight-bold">Edit</span>
+                        </a>
+
+                        |
+
+                        <a class="btn btn-info" asp-controller="News" asp-action="DeleteNews" asp-route-id="@item.Id">
+                            <span class="text-lg font-weight-bold">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="row ">
+            <div>
+                <span class="text-danger">There is no News! Add one</span>
+            </div>
+        </div>
+    }
+
+    <div class="row justify-content-end">
+        <div class="col-3">
+            <a class="btn btn-info btn-icon-split" asp-controller="News" asp-action="AddNews">
+                <span class="text-lg p-2 font-weight-bold m-2 text-gray-100">Add News</span>
+            </a>
+        </div>
+    </div>
+</div>
