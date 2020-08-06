@@ -120,7 +120,6 @@ namespace NewsPanel.EndPoints.MVC.Controllers
 
 
 
-        // Inja bayad ye model benevisam ke category ina ro ham bedam be view! => NewsModel()
         public IActionResult EditNews(int id)
         {
             var news = _newsRepository.Get(id);
@@ -130,11 +129,26 @@ namespace NewsPanel.EndPoints.MVC.Controllers
                 Title = news.Title,
                 Content = news.Content,
                 PublishDate = news.PublishDate,
-                KeywordForDisplay = GetKeywordFromNewsKeyword(news.Id),
-                CategoryForDisplay = GetCategoryFromNewsCategory(news.Id),
-                PlaceForDisplay = GetPlacesFromNewsPublishPlaces(news.Id)
+                SelectedCategory = new List<int>(),
+                SelectedKeyword = new List<int>(),
+                SelectedPlace = new List<int>(),
+                KeywordForDisplay = _keywordRepository.GetAll().ToList(),
+                CategoryForDisplay = _categoryRepository.GetAll().ToList(),
+                PlaceForDisplay = _placeRepository.GetAll().ToList()
             };
-
+            
+            foreach (var item in GetCategoryFromNewsCategory(news.Id))
+            {
+                newsModel.SelectedCategory.Add(item.Id);
+            }
+            foreach (var item in GetKeywordFromNewsKeyword(news.Id))
+            {
+                newsModel.SelectedKeyword.Add(item.Id);
+            }
+            foreach (var item in GetPlacesFromNewsPublishPlaces(news.Id))
+            {
+                newsModel.SelectedPlace.Add(item.Id);
+            }
             return View(newsModel);
         }
 
@@ -161,44 +175,11 @@ namespace NewsPanel.EndPoints.MVC.Controllers
                         }
                     }
 
-                    //if (newsModel.SelectedCategory != null)
-                    //{
-                    //    foreach (var item in newsModel.SelectedCategory)
-                    //    {
-                    //        _newsCategoryRepository.Add(new NewsCategory
-                    //        {
-                    //            NewsId = newsModel.Id,
-                    //            CategoryId = item
-                    //        });
-                    //    }
-                    //}
-                    //if (newsModel.SelectedKeyword != null)
-                    //{
-                    //    var allNewsKeyword = _newsKeywordRepository.GetAll();
-                    //    foreach (var item in newsModel.SelectedKeyword)
-                    //    {
-                    //        if (!allNewsKeyword.Any(c => (c.NewsId == newsModel.Id && c.KeywordId == item )))
-                    //        {
-                    //            _newsKeywordRepository.Add(new NewsKeyword
-                    //            {
-                    //                NewsId = newsModel.Id,
-                    //                KeywordId = item
-                    //            });
-                    //        }
-                    //    }
-                    //}
-                    //if (newsModel.SelectedPlace != null)
-                    //{
-                    //    foreach (var item in newsModel.SelectedPlace)
-                    //    {
-                    //        _newsPublishPlaceRepository.Add(new NewsPublishPlace
-                    //        {
-                    //            NewsId = newsModel.Id,
-                    //            PlaceId = item
-                    //        });
-                    //    }
-                    //}
+                    EditCategoryForNews(newsModel);
+                    EditKeywordForNews(newsModel);
+                    EditPlaceForNews(newsModel);
 
+                    
 
 
 
@@ -213,8 +194,65 @@ namespace NewsPanel.EndPoints.MVC.Controllers
             return View(newsModel);
         }
 
+        private void EditCategoryForNews(AddNewsModel newsModel)
+        {
+            var selectedNewsCategory = _newsCategoryRepository.GetAll().Where(c => c.NewsId == newsModel.Id).ToList();
+            foreach (var item in selectedNewsCategory)
+            {
+                _newsCategoryRepository.Delete(item);
+            }
+            if (newsModel.SelectedCategory != null)
+            {
+                foreach (var item in newsModel.SelectedCategory)
+                {
+                    _newsCategoryRepository.Add(new NewsCategory
+                    {
+                        NewsId = newsModel.Id,
+                        CategoryId = item
+                    });
+                }
+            }
+        }
 
+        private void EditKeywordForNews(AddNewsModel newsModel)
+        {
+            var selectedNewsKeyword = _newsKeywordRepository.GetAll().Where(c => c.NewsId == newsModel.Id).ToList();
+            foreach (var item in selectedNewsKeyword)
+            {
+                _newsKeywordRepository.Delete(item);
+            }
+            if (newsModel.SelectedKeyword != null)
+            {
+                foreach (var item in newsModel.SelectedKeyword)
+                {
+                    _newsKeywordRepository.Add(new NewsKeyword
+                    {
+                        NewsId = newsModel.Id,
+                        KeywordId = item
+                    });
+                }
+            }
+        }
 
+        private void EditPlaceForNews(AddNewsModel newsModel)
+        {
+            var selectedNewsPlace = _newsPublishPlaceRepository.GetAll().Where(c => c.NewsId == newsModel.Id).ToList();
+            foreach (var item in selectedNewsPlace)
+            {
+                _newsPublishPlaceRepository.Delete(item);
+            }
+            if (newsModel.SelectedPlace != null)
+            {
+                foreach (var item in newsModel.SelectedPlace)
+                {
+                    _newsPublishPlaceRepository.Add(new NewsPublishPlace
+                    {
+                        NewsId = newsModel.Id,
+                        PlaceId = item
+                    });
+                }
+            }
+        }
 
 
 
